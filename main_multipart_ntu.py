@@ -614,7 +614,7 @@ class Processor():
             start_epoch = 0
             for epoch in range(self.arg.start_epoch, self.arg.num_epoch):
                 save_model = (((epoch + 1) % self.arg.save_interval == 0) or (
-                        epoch + 1 == self.arg.num_epoch)) and (epoch+1) > self.arg.save_epoch
+                        epoch + 1 == self.arg.num_epoch)) and (epoch + 1) >= self.arg.save_epoch
 
                 self.train(epoch, save_model=save_model)
 
@@ -665,7 +665,7 @@ if __name__ == '__main__':
     p = parser.parse_args()
     if p.config is not None:
         with open(p.config, 'r') as f:
-            default_arg = yaml.load(f)
+            default_arg = yaml.safe_load(f)
         key = vars(p).keys()
         for k in default_arg.keys():
             if k not in key:
