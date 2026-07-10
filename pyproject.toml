@@ -1,0 +1,32 @@
+[project]
+name = "gap-repro"
+version = "0.1.0"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "torch==2.5.1",
+    "torchvision==0.20.1",
+    "numpy==1.26.4",
+    "scipy==1.11.4",
+    "scikit-learn==1.4.2",
+    "pyyaml==6.0.2",
+    "tqdm==4.66.5",
+    "tensorboardx==2.6.2.2",
+    "einops==0.8.0",
+    "ftfy==6.2.3",
+    "regex==2024.11.6",
+    "matplotlib==3.8.4",
+    "torchlight",
+]
+
+[tool.uv]
+package = false
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu124" }
+torchvision = { index = "pytorch-cu124" }
+torchlight = { path = "torchlight", editable = true }
